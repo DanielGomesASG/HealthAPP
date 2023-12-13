@@ -1,8 +1,5 @@
 # Health APP
 
-## Descrição:
-O Health APP consiste em uma REST API no contexto da saúde desenvolvida em C# .NET 6 utilizando a arquitetura DDD, IDENTITY e JWT para controle de usuários, SQL SERVER como DB, ENTITY como ORM implementado em conjunto com o AUTOMAPPER, THUNDER CLIENT em testes de unidade, LINQ em consultas e SWAGGER para documentação.
-
 ## Processo de desenvolvimento:
 1. Construindo toda estrutura do projeto no padrão DDD.
 2. Criando as Entities e os Enums com validação de campo.
