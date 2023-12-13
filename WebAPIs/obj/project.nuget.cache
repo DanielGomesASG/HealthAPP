@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "M2dEoDsJuv5KJ8Lb3BDCBL/q2zRnDkaKAiFF7CRN4Yx/Q2Dmyrij3ZSbT6748OugtfRkdd2QhU1A5qui6SrSbg==",
-  "success": false,
+  "dgSpecHash": "a19QFehuNaddJ7slnePtWPi0NRcJ9YAdCK0pou7mdK8IlKsG/ERQ4xU/Y3Ei1zfnMad6I5sjWOMoCdyCI/87bg==",
+  "success": true,
   "projectFilePath": "C:\\Users\\danie\\OneDrive\\Área de Trabalho\\Projetos\\C#\\HealthAPP\\WebAPIs\\WebAPIs.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\danie\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
@@ -67,15 +67,5 @@
     "C:\\Users\\danie\\.nuget\\packages\\system.text.encoding.codepages\\4.7.0\\system.text.encoding.codepages.4.7.0.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1605",
-      "level": "Error",
-      "message": "Warning As Error: Detected package downgrade: Pomelo.EntityFrameworkCore.MySql from 7.0.0 to 6.0.1. Reference the package directly from the project to select a different version. \r\n WebAPIs -> Infrastructure -> Pomelo.EntityFrameworkCore.MySql (>= 7.0.0) \r\n WebAPIs -> Pomelo.EntityFrameworkCore.MySql (>= 6.0.1)",
-      "libraryId": "Pomelo.EntityFrameworkCore.MySql",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    }
-  ]
+  "logs": []
 }

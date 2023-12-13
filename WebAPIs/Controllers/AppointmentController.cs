@@ -36,17 +36,11 @@ namespace WebAPIs.Controllers
         [HttpPost("/api/Add")]
         public async Task<List<Notifies>> Add(AppointmentViewModel Appointment)
         {
-            var type = await LoggedUserType();
+            Appointment.UserId = await LoggedUserId();
+            var AppointmentMap = _IMapper.Map<Appointment>(Appointment);
+            await _IServiceAppointment.Add(AppointmentMap);
+            return AppointmentMap.Notifications;
 
-            if (_Notifies.UserTypeValidate(type, "Add"))
-            {
-                Appointment.UserId = await LoggedUserId();
-                var AppointmentMap = _IMapper.Map<Appointment>(Appointment);
-                await _IServiceAppointment.Add(AppointmentMap);
-                return AppointmentMap.Notifications;
-            }
-
-            return _Notifies.Notifications;
         }
 
         // Update
@@ -55,9 +49,18 @@ namespace WebAPIs.Controllers
         [HttpPost("/api/UpdateAppointment")]
         public async Task<List<Notifies>> Update(AppointmentViewModel Appointment)
         {
-            var AppointmentMap = _IMapper.Map<Appointment>(Appointment);
-            await _IServiceAppointment.Update(AppointmentMap);
-            return AppointmentMap.Notifications;
+            var type = await LoggedUserType();
+
+            // Retornando a lista caso o usuário tenha permissão
+            if (_Notifies.UserTypeValidate(type, "UpdateAppointment"))
+            {
+                var AppointmentMap = _IMapper.Map<Appointment>(Appointment);
+                await _IServiceAppointment.Update(AppointmentMap);
+                return AppointmentMap.Notifications;
+            }
+
+            // Lista vazia para usuários sem permissão
+            return new List<Notifies>();
         }
 
         // Delete
@@ -66,12 +69,18 @@ namespace WebAPIs.Controllers
         [HttpPost("/api/DeleteAppointment")]
         public async Task<List<Notifies>> Delete(AppointmentViewModel Appointment)
         {
+            var type = await LoggedUserType();
 
-            var AppointmentMap = _IMapper.Map<Appointment>(Appointment);
-            await _IAppointment.Delete(AppointmentMap);
-            return AppointmentMap.Notifications;
+            // Retornando a lista caso o usuário tenha permissão
+            if (_Notifies.UserTypeValidate(type, "DeleteAppointment"))
+            {
+                var AppointmentMap = _IMapper.Map<Appointment>(Appointment);
+                await _IAppointment.Delete(AppointmentMap);
+                return AppointmentMap.Notifications;
+            }
 
-            return _Notifies.Notifications;
+            // Lista vazia para usuários sem permissão
+            return new List<Notifies>();
         }
 
         // Read
@@ -90,6 +99,7 @@ namespace WebAPIs.Controllers
                 return AppointmentMap;
             }
 
+            // Lista vazia para usuários sem permissão
             return new AppointmentViewModel();
         }
 
@@ -107,6 +117,7 @@ namespace WebAPIs.Controllers
                 var AppointmentMap = _IMapper.Map<List<AppointmentViewModel>>(Appointments);
                 return AppointmentMap;
             }
+
             // Lista vazia para usuários sem permissão
             return new List<AppointmentViewModel>();
         }
