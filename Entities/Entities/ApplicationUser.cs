@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Entities.Entities
-{   
+{
     // Criando a classe usuários
     public class ApplicationUser : IdentityUser
     {

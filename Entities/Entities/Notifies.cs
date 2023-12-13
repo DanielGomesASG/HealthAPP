@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Entities
 {
-    // Criando a classe de mensagens de notificação
+    // Criando a classe de notificação
     public class Notifies
     {
         // Construtor da lista
@@ -20,9 +20,9 @@ namespace Entities.Entities
         [NotMapped]
         public string PropName { get; set; }
 
-        // Mensagem de erro
+        // Mensagem
         [NotMapped]
-        public string message { get; set; }
+        public string Appointment { get; set; }
 
         // Lista de notificações
         [NotMapped]
@@ -35,7 +35,7 @@ namespace Entities.Entities
             {
                 Notifications.Add(new Notifies
                 {
-                    message = "Campo Obrigatório",
+                    Appointment = "Campo Obrigatório",
                     PropName = propName
                 });
 
@@ -53,7 +53,7 @@ namespace Entities.Entities
             {
                 Notifications.Add(new Notifies
                 {
-                    message = "Campo Obrigatório",
+                    Appointment = "Campo Obrigatório",
                     PropName = propName
                 });
 
@@ -64,6 +64,21 @@ namespace Entities.Entities
             return true;
         }
 
+        // Validando o tipo de usuário
+        public bool UserTypeValidate(string userType, string propName)
+        {
+            if (userType != "Admin")
+            {
+                Notifications.Add(new Notifies
+                {
+                    Appointment = "Usuário não autorizado",
+                    PropName = propName
+                });
 
+                return false;
+            }
+
+            return true;
+        }
     }
 }

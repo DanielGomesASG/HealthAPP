@@ -17,7 +17,7 @@ namespace Infrastructure.Configuration
         {
         }
 
-        public DbSet<Message> Message { get; set; }
+        public DbSet<Appointment> Appointment { get; set; }
 
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
 
@@ -38,11 +38,16 @@ namespace Infrastructure.Configuration
             base.OnModelCreating(builder);
         }
 
-        /* Definindo a string de conexão. Para conectar ao seu banco de dados caso seja necessário id e senha, insira após 
-         * "Integrated Security = true" o seguinte código com id e senha no lugar dos caracteres "X":: User ID = XXXX; Password = XXXX; */
+        // Definindo a string de conexão
+
+        /* Intruções para conectar-se ao seu banco de dados: 
+         * Copie o código contido no caminho: View (Na barra superior da IDE) > Server Explorer > Data Connections. 
+         * Em seguida clique com o botão direito na sua conexão, e em properties, nesta aba copie a "Connection String" 
+         * e cole-a no retorno abaixo. Caso necessário id e senha, insira após "Integrated Security = true" o seguinte 
+         * código sem parênteses com id e senha no lugar dos caracteres "XXXX": "User ID=XXXX; Password=XXXX;" */
         public string ConnectionString()
         {
-            return "Data Source = DESKTOP - H2S9AJ9\\SQLEXPRESS; Initial Catalog = HEALTH_APP; Integrated Security = True; Encrypt = False";
+            return "Data Source=DESKTOP-H2S9AJ9\\SQLEXPRESS;Initial Catalog=Health-APP;Integrated Security=True;Encrypt=False";
         }
     }
 }
